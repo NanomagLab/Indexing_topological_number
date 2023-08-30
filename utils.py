@@ -101,5 +101,5 @@ def compute_skyrmion_number(spin_map):
     omega2 = 2 * tf.atan(absdbc / (1 + tf.reduce_sum(tf.multiply(spin_map_d, spin_map_b), axis=-1)
                                    + tf.reduce_sum(tf.multiply(spin_map_d, spin_map_c), axis=-1)
                                    + tf.reduce_sum(tf.multiply(spin_map_b, spin_map_c), axis=-1)))
-    solid_angle = tf.reduce_sum(omega1 - omega2, axis=[1, 2])
+    solid_angle = tf.reduce_sum(omega2 - omega1, axis=[1, 2])
     return solid_angle/((4. * np.pi))
