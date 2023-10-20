@@ -71,7 +71,7 @@ def spin2rgb(X):
 
         rgb = np.stack([r, g, b], axis=-1)
         return rgb.reshape(in_shape)
-
+    X = -X
     norm, normed_X = normalize(X)
     norm = np.clip(norm, 0, 1)
     X = norm * normed_X
