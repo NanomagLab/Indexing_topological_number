@@ -6,7 +6,7 @@ from PIL import Image
 from utils import spin2rgb, compute_skyrmion_number
 
 images = [Image.open("examples/" + path, 'r') for path in os.listdir("examples")]
-inputs = [-np.array(image)[..., :1] * 2. / 255. + 1. for image in images]
+inputs = [-np.array(image).astype(np.float32)[..., :1] * 2. / 255. + 1. for image in images]
 model = tf.keras.models.load_model("model")
 outputs = [model.predict(x[None, ...], verbose = 0)[0] for x in inputs]
 skyrmion_numbers = [compute_skyrmion_number(output[None, ...])[0] for output in outputs]
